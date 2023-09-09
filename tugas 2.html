@@ -140,27 +140,27 @@
         <div class="row justify-content-center">
             <div class="col-md-6">
 
-                <form>
+                <form name="submit">
             
                     <div class="mb-3">
 
-                      <label for="name" class="form-label">Nama Lengkap</label>
+                      <label name="name" class="form-label">Nama Lengkap</label>
 
-                      <input type="text" class="form-control" id="name" aria-describedby="name">
+                      <input type="name" name="name" class="form-control" id="name" aria-describedby="name">
 
                     </div>
         
                     <div class="mb-3">
 
-                      <label for="email" class="form-label">Email</label>
+                      <label name="email" class="form-label">Email</label>
 
-                      <input type="email" class="form-control" id="email">
+                      <input type="email" name="email" class="form-control" id="email">
 
                     </div>
 
                     <div class="mb-3">
                         <label for="pesan" class="form-label">pesan</label>
-                        <textarea class="form-control" id="pesan" rows="3"></textarea>
+                        <textarea name="pesan" class="form-control" id="pesan" rows="3"></textarea>
                       </div>
         
                     <button type="submit" class="btn btn-primary">Submit</button>
@@ -191,6 +191,21 @@
 
 
 
+
+<script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbxPUWY7w6ROuN4e-3pYGJq416mjZPcVcUu9XjHf_TOKVyyNEej0fjV-lkC4RQh9a3y0/exec';
+    const form = document.forms['submit'];
+
+    form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        fetch(scriptURL, { method: "POST", body: new FormData(form) })
+         .then((response) => {
+            form.reset()
+            alert("Pesan Telah Dikirim!")
+         })
+          .catch((error) => console.error("Error!", error.message));
+    });
+</script>
 
 
 
